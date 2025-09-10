@@ -29,6 +29,12 @@ remote_state {
     encrypt        = true
     dynamodb_table = local.dynamodb_table
   }
+  tf = {
+    cognito  = "${local.terraform_repo}//modules/cognito?ref=${local.terraform_ref}"
+    lambda   = "${local.terraform_repo}//modules/lambda?ref=${local.terraform_ref}"
+    api      = "${local.terraform_repo}//modules/api?ref=${local.terraform_ref}"
+    web      = "${local.terraform_repo}//modules/webhosting?ref=${local.terraform_ref}"
+  }
 }
 
 generate "provider" {
@@ -88,11 +94,3 @@ provider "aws" {
 EOF
 }
 
-locals {
-  tf = {
-    cognito  = "${local.terraform_repo}//modules/cognito?ref=${local.terraform_ref}"
-    lambda   = "${local.terraform_repo}//modules/lambda?ref=${local.terraform_ref}"
-    api      = "${local.terraform_repo}//modules/api?ref=${local.terraform_ref}"
-    web      = "${local.terraform_repo}//modules/webhosting?ref=${local.terraform_ref}"
-  }
-}
