@@ -1,0 +1,21 @@
+name: Build
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Print GitHub context
+        shell: bash
+        run: |
+          echo "GITHUB_REPOSITORY: $GITHUB_REPOSITORY"
+          echo "GITHUB_ACTOR: $GITHUB_ACTOR"
+          echo "GITHUB_WORKFLOW: $GITHUB_WORKFLOW"
+          echo "GITHUB_RUN_ID: $GITHUB_RUN_ID"
+          echo "GITHUB_RUN_NUMBER: $GITHUB_RUN_NUMBER"
